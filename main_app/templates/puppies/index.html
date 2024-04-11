@@ -9,8 +9,8 @@
         <span class="card-title">{{ puppy.name }}</span>
         <p>Breed: {{ puppy.breed }}</p>
         <p>Description: {{ puppy.description }}</p>
-        {% if puppy.age > 0 %}
-        <p>Age: {{ puppy.age }}</p>
+        {% if puppy.age_in_months > 0 %}
+        <p>Age: {{ puppy.age_in_months }} months</p>
         {% else %}
         <p>Age: Puppy</p>
         {% endif %}
