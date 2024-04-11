@@ -1,9 +1,10 @@
 from django.shortcuts import render
 
 puppies = [
-    {'name': 'Buddy', 'breed': 'Golden Retriever'},
-    {'name': 'Daisy', 'breed': 'Poodle'},
-    {'name': 'Rex', 'breed': 'German Shepherd'}
+    {'name': 'Buddy', 'breed': 'Golden Retriever', 'description': 'A friendly and loyal companion.', 'age': 0.50},
+    {'name': 'Lucy', 'breed': 'Bulldog', 'description': 'A happy puppy with lots of energy.', 'age': 0.33},
+    {'name': 'Daisy', 'breed': 'Poodle', 'description': 'A smart and friendly puppy.', 'age': 0.25},
+    {'name': 'Rex', 'breed': 'German Shepherd', 'description': 'A strong and protective puppy.', 'age': 0.75},
 ]
 
 # Create your views here.
