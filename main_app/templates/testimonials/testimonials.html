@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Testimonials</h1>
+    <ul>
+        {% for testimonial in testimonials %}
+        <li>{{ testimonial.author }}: {{ testimonial.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Testimonial Detail</h1>
+    <p><strong>Author:</strong> {{ testimonial.author }}</p>
+    <p><strong>Content:</strong> {{ testimonial.content }}</p>
+    <p><strong>Date:</strong> {{ testimonial.date }}</p>
+</div>
+{% endblock %}
