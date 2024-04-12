@@ -1,22 +1,80 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<h1>Puppy Details</h1>
+<div class="container">
+    <h1 class="mb-4">Puppy Details</h1>
 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ puppy.name }}</span>
-        <p>Breed: {{ puppy.breed }}</p>
-        <p>Description: {{ puppy.description|linebreaks }}</p>
-        {% if puppy.age_in_months > 0 %}
-        <p>Age: {{ puppy.age_in_months }} months</p>
-        {% else %}
-        <p>Age: Puppy</p>
-        {% endif %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title">{{ puppy.name }}</h5>
+            <p class="card-text">Breed: {{ puppy.breed }}</p>
+            {% if puppy.age_in_months > 0 %}
+            <p class="card-text">Age: {{ puppy.age_in_months }} months</p>
+            {% else %}
+            <p class="card-text">Age: Puppy</p>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ puppy.description|linebreaks }}</p>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">Adoption Process</h4>
+            <p>If you're interested in adopting {{ puppy.name }}, please fill out our adoption form and one of our team
+                members will get in touch with you.</p>
+            <a href="#" class="btn btn-primary">Adoption Form</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">Related Articles</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#">10 Tips for New Puppy Owners</a></li>
+                <li class="list-group-item"><a href="#">Understanding Your Puppy's Behavior</a></li>
+                <li class="list-group-item"><a href="#">Choosing the Right Puppy Food</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h4 class="mb-3">Testimonials</h4>
+            <div class="card">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>"We adopted {{ puppy.name }} from PawPalace and couldn't be happier! He's brought so much joy
+                            into our lives."</p>
+                        <footer class="blockquote-footer">John Doe</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">Contact Us</h4>
+            <p>If you have any questions about {{ puppy.name }} or the adoption process, feel free to contact us:</p>
+            <ul class="list-unstyled">
+                <li>Email: info@pawpalace.com</li>
+                <li>Phone: 1-800-PUPPIES</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h4 class="mb-3">Share</h4>
+            <!-- Add social media sharing buttons here -->
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
+
 
 
 
