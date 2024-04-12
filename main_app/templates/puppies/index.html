@@ -1,23 +1,27 @@
 {% extends 'base.html' %}
+
 {% block content %}
-
-<h1>Puppy List</h1>
-
-{% for puppy in puppies %}
-<div class="card">
-    <a href="{% url 'detail' puppy.id %}">
-    <div class="card-content">
-        <span class="card-title">{{ puppy.name }}</span>
-        <p>Breed: {{ puppy.breed }}</p>
-        <p>Description: {{ puppy.description }}</p>
-        {% if puppy.age_in_months > 0 %}
-        <p>Age: {{ puppy.age_in_months }} months</p>
-        {% else %}
-        <p>Age: Puppy</p>
-        {% endif %}
+<div class="container">
+    <h1 class="mt-4 mb-3">Puppy List</h1>
+    <div class="row">
+        {% for puppy in puppies %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{% static 'images/'|add:puppy.image_name %}" class="card-img-top" alt="{{ puppy.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ puppy.name }}</h5>
+                    <p class="card-text">Breed: {{ puppy.breed }}</p>
+                    <p class="card-text">Description: {{ puppy.description }}</p>
+                    {% if puppy.age_in_months > 0 %}
+                    <p class="card-text">Age: {{ puppy.age_in_months }} months</p>
+                    {% else %}
+                    <p class="card-text">Age: Puppy</p>
+                    {% endif %}
+                    <a href="{% url 'detail' puppy.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    </a>
 </div>
-{% endfor %}
-
 {% endblock %}
