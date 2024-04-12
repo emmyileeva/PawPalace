@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <div class="container">
     <h1 class="mt-4 mb-3">Puppy List</h1>
@@ -7,7 +9,9 @@
         {% for puppy in puppies %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="{% static 'images/'|add:puppy.image_name %}" class="card-img-top" alt="{{ puppy.name }}">
+                {% with 'images/'|add:puppy.name|add:'.jpg' as image_filename %}
+                <img src="{% static image_filename %}" alt="{{ puppy.name }}">
+                {% endwith %}
                 <div class="card-body">
                     <h5 class="card-title">{{ puppy.name }}</h5>
                     <p class="card-text">Breed: {{ puppy.breed }}</p>

@@ -6,7 +6,6 @@ class Puppy(models.Model):
     age_in_months = models.IntegerField()
     breed = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
-    image = models.ImageField(upload_to='puppy_images', default='default_puppy_image.jpg')
 
     def __str__(self):
         return self.name
