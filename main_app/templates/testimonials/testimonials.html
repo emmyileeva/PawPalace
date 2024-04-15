@@ -5,7 +5,7 @@
     <h1>Testimonials</h1>
     <ul>
         {% for testimonial in testimonials %}
-        <li>{{ testimonial.author }}: {{ testimonial.content }}</li>
+        <li>{{ testimonial.name }}: {{ testimonial.message }}</li>
         {% endfor %}
     </ul>
 </div>

@@ -2,15 +2,10 @@
 
 {% block content %}
 <div class="container">
-    <h1>Submit Testimonial</h1>
-    <form method="post">
+    <h1>Add a Testimonial</h1>
+    <form action="{% url 'submit_testimonials' %}" method="post">
         {% csrf_token %}
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author">
-        <br>
-        <label for="content">Content:</label>
-        <textarea id="content" name="content"></textarea>
-        <br>
+        {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
 </div>

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Puppy
 from .models import Testimonial
 from .forms import TestimonialForm
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -24,7 +26,7 @@ def puppies_detail(request, puppy_id):
 
 def testimonials(request):
     testimonials = Testimonial.objects.all()
-    return render(request, 'testimonials.html', {'testimonials': testimonials})
+    return render(request, 'testimonials/testimonials.html', {'testimonials': testimonials})
 
 def submit_testimonial(request):
     if request.method == 'POST':
@@ -34,4 +36,18 @@ def submit_testimonial(request):
             return redirect('testimonials')
     else:
         form = TestimonialForm()
-    return render(request, 'submit_testimonial.html', {'form': form})
+    return render(request, 'testimonials/submit_testimonials.html', {'form': form})
+
+def testimonial_detail(request, testimonial_id):
+    testimonial = Testimonial.objects.get(id=testimonial_id)
+    return render(request, 'testimonials/detail.html', {'testimonial': testimonial})
+
+class TestimonialUpdateView(UpdateView):
+    model = Testimonial
+    fields = ['name', 'message']
+    template_name = 'testimonials/update_testimonial.html' 
+    success_url = reverse_lazy('testimonials') 
+
+class TestimonialDeleteView(DeleteView):
+    model = Testimonial
+    success_url = reverse_lazy('testimonials')
