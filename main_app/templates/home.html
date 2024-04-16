@@ -26,17 +26,27 @@
                     <h5 class="card-title">Subscribe to Our Newsletter</h5>
                     <p class="card-text">Stay up-to-date with the latest puppy arrivals, care tips, and special
                         promotions.</p>
-                    <form>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Enter your email">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
+
+{% if messages %}
+<div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+                <form action="{% url 'subscribe' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+
+
+
 
 

@@ -6,9 +6,11 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 import random
 
+
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    form = SubscriberForm()
+    return render(request, 'home.html', {'form': form})
 
 def about(request):
     return render(request, 'about.html')

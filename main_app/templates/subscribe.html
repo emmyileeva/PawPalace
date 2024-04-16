@@ -7,7 +7,7 @@
 </div>
 {% endif %}
 
-<form method="post">
+<form action="{% url 'subscribe' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Subscribe</button>
