@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Puppy
-from .models import Testimonial
-from .forms import TestimonialForm
+from .models import Puppy, Testimonial
+from .forms import TestimonialForm, SubscriberForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib import messages
+import random
 
 # Create your views here.
 def home(request):
@@ -22,7 +23,9 @@ def puppies_index(request):
     
 def puppies_detail(request, puppy_id):
   puppy = Puppy.objects.get(id=puppy_id)
-  return render(request, 'puppies/detail.html', { 'puppy': puppy })
+  testimonials = Testimonial.objects.all()
+  random_testimonial = random.choice(testimonials)
+  return render(request, 'puppies/detail.html', { 'puppy': puppy, 'random_testimonial': random_testimonial })
 
 def testimonials(request):
     testimonials = Testimonial.objects.all()
@@ -36,7 +39,8 @@ def submit_testimonial(request):
             return redirect('testimonials')
     else:
         form = TestimonialForm()
-    return render(request, 'testimonials/submit_testimonials.html', {'form': form})
+        testimonials = Testimonial.objects.all()
+        return render(request, 'testimonials/submit_testimonials.html', {'form': form, 'testimonials': testimonials})
 
 def testimonial_detail(request, testimonial_id):
     testimonial = Testimonial.objects.get(id=testimonial_id)
@@ -50,4 +54,16 @@ class TestimonialUpdateView(UpdateView):
 
 class TestimonialDeleteView(DeleteView):
     model = Testimonial
+    template_name = 'testimonials/delete_testimonial.html'
     success_url = reverse_lazy('testimonials')
+    
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you for subscribing!')
+            return redirect('/')       
+    else:
+        form = SubscriberForm()
+        return render(request, 'subscribe.html', {'form': form})

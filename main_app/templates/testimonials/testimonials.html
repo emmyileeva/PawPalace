@@ -2,11 +2,18 @@
 
 {% block content %}
 <div class="container">
-    <h1>Testimonials</h1>
-    <ul>
+    <h1>Reviews</h1>
+    <div class="row">
         {% for testimonial in testimonials %}
-        <li>{{ testimonial.name }}: {{ testimonial.message }}</li>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ testimonial.name }}</h5>
+                    <p class="card-text">{{ testimonial.message }}</p>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}

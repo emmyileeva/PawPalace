@@ -44,11 +44,10 @@
             <h4 class="mb-3">Testimonials</h4>
             <div class="card">
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>"We adopted {{ puppy.name }} from PawPalace and couldn't be happier! He's brought so much joy
-                            into our lives."</p>
-                        <footer class="blockquote-footer">John Doe</footer>
-                    </blockquote>
+                <blockquote class="blockquote mb-0">
+                    <p>"{{ random_testimonial.message }}"</p>
+                    <footer class="blockquote-footer">{{ random_testimonial.name }}</footer>
+                </blockquote>
                 </div>
             </div>
         </div>
@@ -67,7 +66,11 @@
         </div>
         <div class="col-md-6">
             <h4 class="mb-3">Share</h4>
-            <!-- Add social media sharing buttons here -->
+            <ul class="d-flex justify-content-start align-items-center" style="list-style: none;">
+                <li><a href="#" class="btn btn-link"><i class="fab fa-facebook" style="font-size: 24px;"></i></a></li>
+                <li><a href="#" class="btn btn-link"><i class="fab fa-twitter" style="font-size: 24px;"></i></a></li>
+                <li><a href="#" class="btn btn-link"><i class="fab fa-instagram" style="font-size: 24px;"></i></a></li>
+            </ul>
         </div>
     </div>
 

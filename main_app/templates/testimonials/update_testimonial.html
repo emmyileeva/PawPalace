@@ -2,18 +2,11 @@
 
 {% block content %}
 <div class="container">
-    <h1>Edit Testimonial</h1>
-    <form method="post">
+    <h1>Update Review</h1>
+    <form action="" method="post">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ testimonial.name }}">
-        </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="3">{{ testimonial.message }}</textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        {{ form.as_p }}
+        <button type="submit">Update</button>
     </form>
 </div>
 {% endblock %}
