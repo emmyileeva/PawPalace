@@ -67,3 +67,6 @@ def subscribe(request):
     else:
         form = SubscriberForm()
         return render(request, 'subscribe.html', {'form': form})
+    
+def tips_view(request):
+    return render(request, 'tips.html')
