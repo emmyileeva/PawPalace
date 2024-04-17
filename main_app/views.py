@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Puppy, Testimonial
+from .models import Puppy, Testimonial, Newsletter, Subscriber
 from .forms import TestimonialForm, SubscriberForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -60,15 +60,22 @@ class TestimonialDeleteView(DeleteView):
     success_url = reverse_lazy('testimonials')
     
 def subscribe(request):
+    newsletters = Newsletter.objects.all()  
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            form.save()
+            email = form.cleaned_data['email']
+            selected_newsletters = Newsletter.objects.filter(pk__in=request.POST.getlist('newsletters'))
+            subscriber, created = Subscriber.objects.get_or_create(email=email)
+            subscriber.newsletters.add(*selected_newsletters)
             messages.success(request, 'Thank you for subscribing!')
-            return redirect('/')       
+            return redirect('/')  
     else:
         form = SubscriberForm()
-        return render(request, 'subscribe.html', {'form': form})
+        
+    return render(request, 'subscribe.html', {'form': form, 'newsletters': newsletters})
+
     
 def tips_view(request):
     return render(request, 'tips.html')
+

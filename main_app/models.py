@@ -20,6 +20,7 @@ class Testimonial(models.Model):
     
 class Subscriber(models.Model):
     email = models.EmailField(unique=True)
+    newsletters = models.ManyToManyField('Newsletter')
     
     def __str__(self):
         return self.email
