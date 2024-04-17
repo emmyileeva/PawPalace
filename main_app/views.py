@@ -81,6 +81,8 @@ def tips_view(request):
 
 def adoption_view(request, puppy_id):
     puppy = Puppy.objects.get(id=puppy_id)
+    testimonials = Testimonial.objects.all()
+    random_testimonial = random.choice(testimonials)
     if request.method == 'POST':
         form = AdoptionForm(request.POST)
         if form.is_valid():
@@ -91,4 +93,4 @@ def adoption_view(request, puppy_id):
             return redirect('/') 
     else:
         form = AdoptionForm()
-    return render(request, 'puppies/detail.html', {'form': form, 'puppy': puppy})
+    return render(request, 'puppies/detail.html', {'form': form, 'puppy': puppy, 'random_testimonial': random_testimonial})
