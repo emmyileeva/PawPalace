@@ -12,5 +12,6 @@ urlpatterns = [
     path('testimonials/<int:pk>/update/', views.TestimonialUpdateView.as_view(), name='update_testimonial'),
     path('testimonials/<int:pk>/delete/', views.TestimonialDeleteView.as_view(), name='delete_testimonial'),
     path('subscribe/', views.subscribe, name='subscribe'),
-    path('tips/', views.tips_view, name='tips')
+    path('tips/', views.tips_view, name='tips'),
+    path('adoption/<int:puppy_id>/', views.adoption_view, name='adoption'),
  ]

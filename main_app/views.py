@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Puppy, Testimonial, Newsletter, Subscriber
-from .forms import TestimonialForm, SubscriberForm
+from .models import Puppy, Testimonial, Newsletter, Subscriber, Adoption
+from .forms import TestimonialForm, SubscriberForm, AdoptionForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -79,3 +79,16 @@ def subscribe(request):
 def tips_view(request):
     return render(request, 'tips.html')
 
+def adoption_view(request, puppy_id):
+    puppy = Puppy.objects.get(id=puppy_id)
+    if request.method == 'POST':
+        form = AdoptionForm(request.POST)
+        if form.is_valid():
+            adoption = form.save(commit=False)
+            adoption.puppy = puppy
+            adoption.save()
+            messages.success(request, 'Thank you for your interest in adopting {}! We will be in touch soon.'.format(puppy.name))
+            return redirect('/') 
+    else:
+        form = AdoptionForm()
+    return render(request, 'puppies/detail.html', {'form': form, 'puppy': puppy})

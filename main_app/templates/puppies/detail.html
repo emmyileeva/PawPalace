@@ -25,22 +25,11 @@
             <h4 class="mb-3">Adoption Process</h4>
             <p>If you're interested in adopting {{ puppy.name }}, please fill out our adoption form and one of our team
                 members will get in touch with you.</p>
-                <form action="{% url 'adoption_request' %}" method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Your Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message (optional)</label>
-                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+        <form action="{% url 'adoption' puppy_id=puppy.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Adoption Form</button>
+        </form>
         </div>
     </div>
 
